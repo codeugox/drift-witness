@@ -1,0 +1,52 @@
+======================================================================
+BASELINE SUMMARY — VR-SENTIMENT-01
+Version: v1.0
+Approval ref: AI-GOV-DEMO-2026-001
+Generated: 2026-05-29T18:42:53.505957Z
+======================================================================
+
+DATASET
+  N:                30
+  Language:         en
+  Domain:           GRC vendor risk text classification
+
+CONFIDENCE SCORES
+  Mean:             0.9237
+  Std:              0.1155
+  P10/P50/P90:      0.7797 / 0.9743 / 0.9985
+  Low conf (<0.70): 6.7%
+
+  Histogram:
+    0.50-0.60  █                                        3.3%
+    0.60-0.70  █                                        3.3%
+    0.70-0.80  ██                                       6.7%
+    0.80-0.90  █████                                    13.3%
+    0.90-1.00  █████████████████████████████            73.3%
+
+LABEL DISTRIBUTION
+  POSITIVE:         13 (43.3%)
+  NEGATIVE:         17 (56.7%)
+
+INPUT TEXT LENGTH
+  Mean:             64.3 chars
+  Std:              5.2 chars
+  Range:            56–75 chars
+
+APPROVED MONITORING THRESHOLDS
+  KS (confidence):  watch 0.05 / warning 0.15 / critical 0.3
+  PSI (confidence): watch 0.05 / warning 0.1 / critical 0.2
+  JS (labels):      watch 0.02 / warning 0.05 / critical 0.15
+  Embedding cosine: watch 0.05 / warning 0.1 / critical 0.2
+
+BASELINE HASH (SHA-256)
+  7d5e387a36a200a584b11d45762ba11124f3b2b0f564cf7182b6215a3f3d626d
+
+APPROVAL REQUIRED
+  Reviewer: _______________________________  Date: ____________
+  Signature: ______________________________
+
+  By signing, the reviewer confirms this baseline accurately represents
+  the approved operating profile for VR-SENTIMENT-01 and that the
+  thresholds above are appropriate for the system's risk tier.
+
+======================================================================

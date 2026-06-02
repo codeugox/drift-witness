@@ -1,0 +1,23 @@
+# AI Drift Monitor — Phase 1 (DistilBERT demo) requirements
+# Pinned to known-working versions for reproducibility.
+# Refresh by running: pip-compile (or pip install --upgrade) and re-verifying.
+
+# Classifier and embeddings
+transformers==4.46.3
+torch==2.5.1
+sentence-transformers==3.3.1
+
+# Drift reports (visual Evidently artifact)
+evidently==0.4.40
+
+# LLM judge
+anthropic==0.40.0
+
+# Numerics and dataframes
+pandas==2.2.3
+scipy==1.14.1
+numpy==1.26.4
+
+# Optional — only needed by drift_test_hermes.py (cloud deployment, not Phase 1)
+# Uncomment when you stand up the Hermes/OpenClaw cloud environment.
+# openai==1.57.0

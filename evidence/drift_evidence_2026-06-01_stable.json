@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "system_id": "VR-SENTIMENT-01",
+  "baseline_version": "v1.0",
+  "baseline_file": "baseline_v1.0_approved_2026-01-15.json",
+  "baseline_hash": "7d5e387a36a200a584b11d45762ba11124f3b2b0f564cf7182b6215a3f3d626d",
+  "approval_ref": "AI-GOV-DEMO-2026-001",
+  "model_card": "model_card_VR-SENTIMENT-01.md",
+  "scenario": "stable",
+  "batch_date": "2026-06-01",
+  "monitoring_run": "automated",
+  "metrics": {
+    "ks_stat": 0.1333,
+    "ks_pval": 0.9578,
+    "ks_status": "WATCH",
+    "psi_confidence": 0.0448,
+    "psi_status": "STABLE",
+    "psi_bins": [
+      "-inf",
+      0.8970094323158264,
+      0.9742684364318848,
+      0.9916399866342545,
+      "+inf"
+    ],
+    "js_divergence": 0.0239,
+    "js_status": "WATCH",
+    "embedding_drift": 0.0418,
+    "emb_status": "STABLE",
+    "avg_conf_base": 0.9237,
+    "avg_conf_prod": 0.9281,
+    "conf_delta": 0.0044,
+    "low_conf_rate": 0.0667,
+    "lc_status": "STABLE",
+    "length_base": 64.3,
+    "length_prod": 63.8,
+    "length_delta": -0.5,
+    "pos_rate_base": 0.433,
+    "pos_rate_prod": 0.4,
+    "batch_n": 30,
+    "sample_inputs": [
+      "Vendor submitted Q1 SOC 2 documentation within agreed timeline.",
+      "Quarterly access review completed. No exceptions identified.",
+      "Annual penetration test report received. POA&M items assigned.",
+      "Vendor confirmed annual security training completion at 96%."
+    ],
+    "scenario": "stable",
+    "baseline_file": "baseline_v1.0_approved_2026-01-15.json",
+    "baseline_hash": "7d5e387a36a200a5..."
+  },
+  "overall_status": "LOW",
+  "trigger_level": "WATCH",
+  "nist_mapping": "MEASURE 2.5 \u2014 The AI system to be deployed is demonstrated to be valid and reliable through the collection, use, and analysis of metrics, including those derived from the AI system's inputs and outputs, and the operating environment.",
+  "llm_assessment": {
+    "overallRisk": "LOW",
+    "triggerLevel": "WATCH",
+    "riskRationale": "VR-SENTIMENT-01 shows two WATCH-level signals \u2014 KS statistic of 0.1333 and Jensen-Shannon Divergence of 0.0239 \u2014 indicating a modest shift in the confidence-score distribution relative to the approved 2026-01-15 baseline, but no metrics have breached WARNING or CRITICAL thresholds. PSI (0.0448) and embedding centroid cosine (0.0418) remain STABLE, the low-confidence rate is unchanged at 6.7%, and average confidence has increased marginally by +0.0044, collectively suggesting the distribution movement does not yet indicate performance degradation. The four sampled production inputs are semantically consistent with routine vendor risk assessment text, providing no evidence of adversarial manipulation or meaningful input-domain shift.",
+    "keyFindings": [
+      "KS statistic of 0.1333 exceeds the WATCH threshold (>0.05) but remains below WARNING (>0.15), indicating a detectable but not yet materially concerning shift in the shape of the confidence-score distribution relative to the approved baseline.",
+      "Jensen-Shannon Divergence of 0.0239 exceeds the WATCH threshold (>0.02) but remains below WARNING (>0.05), corroborating the KS signal and confirming a mild distributional movement; however, the direction of movement (average confidence slightly higher at +0.0044) does not suggest deterioration.",
+      "All stabilizing indicators \u2014 PSI (0.0448, STABLE), embedding centroid cosine (0.0418, STABLE), low-confidence rate (6.7%, unchanged from approved baseline), and average input length delta (-0.5 chars, negligible) \u2014 remain within approved bounds, limiting overall risk elevation to LOW with a WATCH trigger status under NIST AI RMF Tier HIGH model governance requirements."
+    ],
+    "controlActions": [
+      "Increase monitoring cadence for VR-SENTIMENT-01 from standard periodic review to weekly batch metric collection until KS and JS divergence return to STABLE or escalate to WARNING, per model card governance obligations for Risk Tier HIGH systems.",
+      "Conduct a structured review of the full current production batch (N=30) beyond the four sampled inputs to verify that the input domain remains consistent with the approved baseline text profile and that no systematic input-type shift is occurring.",
+      "Document current WATCH status in the AI-GOV-DEMO-2026-001 governance record, notify the model owner and risk steward, and set a formal re-evaluation checkpoint at the next scheduled review cycle or sooner if any single metric crosses a WARNING threshold."
+    ],
+    "nistMapping": "MEASURE 2.5 \u2014 The AI system to be deployed is demonstrated to be valid and reliable through the collection, use, and analysis of metrics, including those derived from the AI system's inputs and outputs, and the operating environment.",
+    "evidenceRequired": [
+      "Full distributional report for the current production batch (N=30) including per-sample confidence scores, predicted labels, and input lengths to support root-cause analysis of the KS and JS WATCH signals.",
+      "Attestation from the model owner that no changes have been made to preprocessing, tokenization, or inference infrastructure since the approved baseline lock date of 2026-01-15, to rule out non-input-related causes of distributional shift."
+    ],
+    "revalidationRequired": false,
+    "assessorNote": "This assessment is constrained by the small approved baseline sample size (N=30), which limits the statistical power of KS and PSI calculations and may cause WATCH signals to reflect baseline sampling variance rather than genuine production drift; the model owner should consider expanding the baseline corpus at the next scheduled revalidation cycle."
+  },
+  "human_reviewer": null,
+  "human_approved": false,
+  "resolution": null,
+  "closure_date": null
+}

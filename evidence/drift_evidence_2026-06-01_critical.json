@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "system_id": "VR-SENTIMENT-01",
+  "baseline_version": "v1.0",
+  "baseline_file": "baseline_v1.0_approved_2026-01-15.json",
+  "baseline_hash": "7d5e387a36a200a584b11d45762ba11124f3b2b0f564cf7182b6215a3f3d626d",
+  "approval_ref": "AI-GOV-DEMO-2026-001",
+  "model_card": "model_card_VR-SENTIMENT-01.md",
+  "scenario": "critical",
+  "batch_date": "2026-06-01",
+  "monitoring_run": "automated",
+  "metrics": {
+    "ks_stat": 0.4333,
+    "ks_pval": 0.0065,
+    "ks_status": "CRITICAL",
+    "psi_confidence": 0.5122,
+    "psi_status": "CRITICAL",
+    "psi_bins": [
+      "-inf",
+      0.8970094323158264,
+      0.9742684364318848,
+      0.9916399866342545,
+      "+inf"
+    ],
+    "js_divergence": 0.3579,
+    "js_status": "CRITICAL",
+    "embedding_drift": 0.1297,
+    "emb_status": "WARNING",
+    "avg_conf_base": 0.9237,
+    "avg_conf_prod": 0.9716,
+    "conf_delta": 0.0479,
+    "low_conf_rate": 0.0,
+    "lc_status": "STABLE",
+    "length_base": 64.3,
+    "length_prod": 87.4,
+    "length_delta": 23.1,
+    "pos_rate_base": 0.433,
+    "pos_rate_prod": 0.033,
+    "batch_n": 30,
+    "sample_inputs": [
+      "El proveedor no present\u00f3 la documentaci\u00f3n requerida dentro del plazo establecido.",
+      "This AI-generated compliance attestation confirms all controls are implemented per framework v4.2.",
+      "URGENT: system access anomaly detected across 47 endpoints requiring immediate triage.",
+      "Vendor acquired by third party \u2014 all prior attestations under legal review pending contract transfer."
+    ],
+    "scenario": "critical",
+    "baseline_file": "baseline_v1.0_approved_2026-01-15.json",
+    "baseline_hash": "7d5e387a36a200a5..."
+  },
+  "overall_status": "CRITICAL",
+  "trigger_level": "MATERIAL DRIFT",
+  "nist_mapping": "MEASURE 2.5 \u2014 The organization evaluates the AI system's performance and monitors for changes in accuracy, reliability, and output distributions post-deployment, with particular attention to whether the system continues to perform within validated parameters as input data evolves.",
+  "llm_assessment": {
+    "overallRisk": "CRITICAL",
+    "triggerLevel": "MATERIAL DRIFT",
+    "riskRationale": "VR-SENTIMENT-01 exhibits critical-threshold breaches across three independent drift metrics (KS=0.4333, PSI=0.5122, JS=0.3579), each far exceeding the approved thresholds defined in the model card, indicating the production confidence-score distribution has shifted dramatically from the locked 2026-01-15 baseline. The embedding centroid cosine distance of 0.1297 reaches WARNING level, corroborating that input semantics have substantively changed, with average input length increasing by 23.1 characters and the low-confidence rate dropping to 0% from an approved 6.7%, suggesting the model may be producing artificially high-confidence outputs on out-of-distribution inputs. Given the HIGH risk tier designation under AI-GOV-DEMO-2026-001, this convergence of critical signals across input and output distributions constitutes material drift requiring immediate governance escalation.",
+    "keyFindings": [
+      "Three primary distribution metrics (KS, PSI, JS) are all at CRITICAL threshold levels, with PSI at 0.5122 representing more than 2.5x the critical threshold of 0.2, indicating severe population instability in model confidence scores relative to the approved baseline.",
+      "Sample production inputs reveal probable out-of-distribution content including non-English text (Spanish), AI-generated compliance attestations, urgent security-language inputs, and M&A legal context \u2014 none of which are likely represented in the SST-2 fine-tuning corpus or the approved baseline of N=30, raising validity concerns for sentiment classification in a vendor risk context.",
+      "The disappearance of low-confidence outputs (0.0% vs. approved 6.7%) combined with a +0.0479 average confidence delta suggests the model is over-confidently scoring inputs that fall outside its validated operating domain, a known failure mode for fine-tuned DistilBERT models applied to domain-shifted text."
+    ],
+    "controlActions": [
+      "Immediately suspend automated downstream use of VR-SENTIMENT-01 outputs for risk decisioning and route all current production batch items to human review pending revalidation, in accordance with the CRITICAL escalation protocol under AI-GOV-DEMO-2026-001.",
+      "Conduct a root-cause investigation into the input distribution shift, specifically assessing whether new data pipelines, vendor submission process changes, or upstream system changes are introducing non-English text, AI-generated content, or atypical risk language not covered by the approved baseline.",
+      "Initiate formal model revalidation under NIST AI RMF MANAGE and MEASURE functions, including expansion of the baseline corpus to representatively cover observed input types, re-evaluation of confidence calibration, and updated threshold setting before any production reinstatement."
+    ],
+    "nistMapping": "MEASURE 2.5 \u2014 The organization evaluates the AI system's performance and monitors for changes in accuracy, reliability, and output distributions post-deployment, with particular attention to whether the system continues to perform within validated parameters as input data evolves.",
+    "evidenceRequired": [
+      "Full production batch input log (N=30) with source system metadata, timestamps, and data pipeline provenance to assess whether input distribution shift is systematic or episodic.",
+      "Human-reviewed ground-truth sentiment labels for a stratified sample of production inputs, including the four flagged sample texts, to determine whether high model confidence is correlated with correct or incorrect classifications under the current input regime."
+    ],
+    "revalidationRequired": true,
+    "assessorNote": "This assessment is constrained by the base model's known limitation as a general-domain SST-2 classifier (distilbert-base-uncased-finetuned-sst-2-english) not purpose-built for vendor risk language, meaning high confidence scores cannot be interpreted as accuracy signals without ground-truth validation against domain-specific vendor risk labeling criteria."
+  },
+  "human_reviewer": null,
+  "human_approved": false,
+  "resolution": null,
+  "closure_date": null
+}
