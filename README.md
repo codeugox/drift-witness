@@ -1,4 +1,4 @@
-# drift-witness
+# Drift-Witness
 
 A runnable demonstration of AI drift monitoring for GRC workflows.
 
