@@ -48,7 +48,7 @@ all-MiniLM-L6-v2); subsequent runs are local.
 
 ```bash
 # Clone
-git clone https://github.com/YOUR_HANDLE/drift-witness.git
+git clone https://github.com/codeugox/drift-witness.git
 cd drift-witness
 
 # Set up an isolated Python environment
@@ -412,13 +412,12 @@ are maintained separately as a private/commercial layer.
 
 ## Contact and author
 
-Senior federal GRC practitioner with a 10+ year background in
-FDIC / FSA / FFIEC environments (CISSP, PMP). Current focus: AI
-governance, post-market monitoring, and the regulatory wave
-reaching financial services, healthcare, and FedRAMP-bound SaaS
-in 2026–2027.
+Built by a Cybersecurity GRC Lead with 10+ years directing compliance
+programs across FDIC, Federal Student Aid, and FFIEC — CISSP, PMP.
+The governance layer reflects what federal financial regulatory
+environments actually require from audit evidence.
 
-Open an issue for technical questions, bugs, or implementation
-patterns worth discussing in public. For organizations preparing
-for AI governance audits, FedRAMP AI authorization, or EU AI Act
-readiness, direct contact via LinkedIn (link in profile).
+Open an issue for technical questions, bugs, or implementation patterns
+worth discussing publicly. For AI governance audit preparation, FedRAMP
+authorization for AI-enabled products, or EU AI Act Article 72 readiness:
+[LinkedIn](https://www.linkedin.com/in/ugoeze)
